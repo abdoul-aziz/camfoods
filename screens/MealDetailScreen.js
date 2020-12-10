@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-// import { HeaderButtons, Items } from "react-navigation-header-buttons";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { PLATS } from "../data/dummy-data";
 
 import HeaderButton from "../components/headerButton";
@@ -8,32 +8,32 @@ import HeaderButton from "../components/headerButton";
 const MealDetailScreen = (props) => {
   const platId = props.navigation.getParam("platId");
 
-  const renderDetailPlat = PLATS.find((plat) => plat.id == platId);
+  const selectedPlat = PLATS.find((plat) => plat.id == platId);
 
   return (
     <View style={styles.screen}>
-      <Text>{renderDetailPlat.ingredients}</Text>
+      <Text>{selectedPlat.ingredients}</Text>
     </View>
   );
 };
 
 MealDetailScreen.navigationOptions = (navigationData) => {
   const platId = navigationData.navigation.getParam("platId");
-  const renderDetailPlat = PLATS.find((plat) => plat.id == platId);
+  const selectedPlat = PLATS.find((plat) => plat.id == platId);
 
   return {
-    headerTitle: renderDetailPlat.title,
-    // headerTitle: (
-    //   <HeaderButtons HeaderButtonComponent={HeaderButton}>
-    //     <Items
-    //       title="Favorite"
-    //       iconName="ios-star"
-    //       onPress={() => {
-    //         console.log("llllllll");
-    //       }}
-    //     />
-    //   </HeaderButtons>
-    // ),
+    headerTitle: selectedPlat.title,
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Favorite"
+          iconName="ios-star"
+          onPress={() => {
+            console.log("Mark as favorite!");
+          }}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 
