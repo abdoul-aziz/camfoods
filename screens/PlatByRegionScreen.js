@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, FlatList } from "react-native";
 
-import { CATEGORIES, PLATS } from "../data/dummy-data";
+import { REGIONS, PLATS } from "../data/dummy-data";
 
 import PlatsItem from "../components/PlatsItem";
 
-const CategoryMealScreen = (props) => {
+const PlatByRegionScreen = (props) => {
   const renderPlatItem = (itemData) => {
     return (
       <PlatsItem
@@ -16,7 +16,7 @@ const CategoryMealScreen = (props) => {
         complexity={itemData.item.complexity}
         onSelectPlat={() => {
           props.navigation.navigate({
-            routeName: "MealDetail",
+            routeName: "PlatDetail",
             params: { platId: itemData.item.id },
           });
         }}
@@ -26,7 +26,7 @@ const CategoryMealScreen = (props) => {
 
   const catId = props.navigation.getParam("categoryId");
 
-  const selectedCategory = CATEGORIES.find((cat) => cat.id == catId);
+  const selectedCategory = REGIONS.find((cat) => cat.id == catId);
   const dsiplayedPlats = PLATS.filter(
     (plat) => plat.categoryIds.indexOf(catId) >= 0
   );
@@ -43,9 +43,9 @@ const CategoryMealScreen = (props) => {
   );
 };
 
-CategoryMealScreen.navigationOptions = (navigationData) => {
+PlatByRegionScreen.navigationOptions = (navigationData) => {
   const catId = navigationData.navigation.getParam("categoryId");
-  const selectedCategory = CATEGORIES.find((cat) => cat.id == catId);
+  const selectedCategory = REGIONS.find((cat) => cat.id == catId);
 
   var dyTitle = selectedCategory.title;
   var titles = "Plats de " + dyTitle;
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryMealScreen;
+export default PlatByRegionScreen;

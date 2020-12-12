@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
-import AppNavigator from "./navigation/MealsNavigation";
+import AppNavigator from "./navigation/PlatsNavigation";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -28,12 +28,3 @@ export default function App() {
 
   return <AppNavigator />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

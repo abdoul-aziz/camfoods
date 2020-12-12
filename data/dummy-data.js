@@ -1,17 +1,17 @@
-import Category from "../models/category";
+import Region from "../models/region";
 import Plat from "../models/plat";
 
-export const CATEGORIES = [
-  new Category("c1", "Adamaoua", "#f5428d"),
-  new Category("c2", "Centre", "#f54242"),
-  new Category("c3", "Est", "#f5a442"),
-  new Category("c4", "Littoral", "#f5d142"),
-  new Category("c5", "Sud Ouest", "#368dff"),
-  new Category("c6", "Nord Ouest", "#41d95d"),
-  new Category("c7", "Sud", "#9eecff"),
-  new Category("c8", "Nord", "#b9ffb0"),
-  new Category("c9", "Extreme Nord", "#ffc7ff"),
-  new Category("c10", "Ouest", "#47fced"),
+export const REGIONS = [
+  new Region("c1", "Adamaoua", "#f5428d"),
+  new Region("c2", "Centre", "#f54242"),
+  new Region("c3", "Est", "#f5a442"),
+  new Region("c4", "Littoral", "#f5d142"),
+  new Region("c5", "Sud Ouest", "#368dff"),
+  new Region("c6", "Nord Ouest", "#41d95d"),
+  new Region("c7", "Sud", "#9eecff"),
+  new Region("c8", "Nord", "#b9ffb0"),
+  new Region("c9", "Extreme Nord", "#ffc7ff"),
+  new Region("c10", "Ouest", "#47fced"),
 ];
 
 export const PLATS = [

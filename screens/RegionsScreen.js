@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { StyleSheet, FlatList } from "react-native";
 
-import { CATEGORIES } from "../data/dummy-data";
+import { REGIONS } from "../data/dummy-data";
 import CategoryGridTitle from "../components/CategoryGridTitle";
 
-const CategoriesScreen = (props) => {
+const RegionsScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
       <CategoryGridTitle
@@ -19,7 +12,7 @@ const CategoriesScreen = (props) => {
         color={itemData.item.color}
         onSelect={() => {
           props.navigation.navigate({
-            routeName: "CategoryMeals",
+            routeName: "RegionPlats",
             params: {
               categoryId: itemData.item.id,
             },
@@ -32,7 +25,7 @@ const CategoriesScreen = (props) => {
   return (
     <FlatList
       keyExtractor={(item, index) => item.id}
-      data={CATEGORIES}
+      data={REGIONS}
       renderItem={renderGridItem}
       numColumns={2}
     />
@@ -47,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoriesScreen;
+export default RegionsScreen;

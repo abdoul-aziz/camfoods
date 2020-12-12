@@ -73,4 +73,3 @@ const styles = StyleSheet.create({
 });
 
 export default PlatItem;
-// mealHeader = platHeader, mealDetail = platDetail
