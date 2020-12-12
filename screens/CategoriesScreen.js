@@ -7,10 +7,12 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridTitle from "../components/CategoryGridTitle";
 
+import HeaderButton from "../components/headerButton";
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
@@ -37,6 +39,25 @@ const CategoriesScreen = (props) => {
       numColumns={2}
     />
   );
+};
+
+CategoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Plats!!! au 237",
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            iconName="ios-menu"
+            title="Menu"
+            onPress={() => {
+              navData.navigation.toggleDrawer();
+            }}
+          />
+        </HeaderButtons>
+      );
+    },
+  };
 };
 
 const styles = StyleSheet.create({

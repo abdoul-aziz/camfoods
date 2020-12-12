@@ -7,6 +7,8 @@ import {
   ImageBackground,
 } from "react-native";
 
+import DefaultText from "./DefaultText";
+
 const PlatItem = (props) => {
   return (
     <View style={styles.platItem}>
@@ -23,9 +25,9 @@ const PlatItem = (props) => {
             </ImageBackground>
           </View>
           <View style={{ ...styles.platRow, ...styles.platDetail }}>
-            <Text> {props.duration} </Text>
-            <Text> {props.affordability.toUpperCase()} </Text>
-            <Text> {props.complexity.toUpperCase()} </Text>
+            <DefaultText> {props.duration} </DefaultText>
+            <DefaultText> {props.affordability.toUpperCase()} </DefaultText>
+            <DefaultText> {props.complexity.toUpperCase()} </DefaultText>
           </View>
         </View>
       </TouchableOpacity>

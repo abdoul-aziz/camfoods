@@ -1,20 +1,33 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+
+import HeaderButton from "../components/headerButton";
+import PlatsList from "../components/PlatsList";
+import { PLATS } from "../data/dummy-data";
 
 const FavoritesMealScreen = (props) => {
-  return (
-    <View style={styles.screen}>
-      <Text>The Favorite Meal Screen </Text>
-    </View>
-  );
+  const favPlats = PLATS.filter((plat) => plat.id === "m1" || plat.id === "m2");
+
+  return <PlatsList listData={favPlats} navigation={props.navigation} />;
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
+FavoritesMealScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: "Favorites !!!",
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            iconName="ios-menu"
+            title="Menu"
+            onPress={() => {
+              navData.navigation.toggleDrawer();
+            }}
+          />
+        </HeaderButtons>
+      );
+    },
+  };
+};
 
 export default FavoritesMealScreen;
