@@ -12,7 +12,7 @@ const PlatByRegionScreen = (props) => {
         title={itemData.item.title}
         image={itemData.item.imageUrl}
         duration={itemData.item.duration}
-        affordability={itemData.item.affordability}
+        affordability={itemData.item.preparation}
         complexity={itemData.item.complexity}
         onSelectPlat={() => {
           props.navigation.navigate({

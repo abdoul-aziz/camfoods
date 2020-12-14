@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  Platform,
+  StyleSheet,
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { PLATS } from "../data/dummy-data";
 import DefaultText from "../components/DefaultText";
@@ -22,7 +29,7 @@ const PlatDetailScreen = (props) => {
       <Image source={{ uri: selectedPlat.imageUrl }} style={styles.image} />
       <View style={styles.details}>
         <DefaultText> {selectedPlat.duration} </DefaultText>
-        <DefaultText> {selectedPlat.affordability.toUpperCase()} </DefaultText>
+        <DefaultText> {selectedPlat.preparation.toUpperCase()} </DefaultText>
         <DefaultText> {selectedPlat.complexity.toUpperCase()} </DefaultText>
       </View>
       <Text style={styles.title}> Description </Text>
@@ -61,7 +68,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 200,
-    marginVertical: 10,
+    marginVertical: 1,
   },
   description: {
     marginHorizontal: 20,

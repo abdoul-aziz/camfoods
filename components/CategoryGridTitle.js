@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
+  Dimensions,
   StyleSheet,
 } from "react-native";
 
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "open-sans-bold",
-    fontSize: 20,
+    fontSize: Dimensions.get("window").width > 480 ? 20 : 16,
     textAlign: "right",
   },
 });

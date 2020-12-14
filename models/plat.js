@@ -4,10 +4,10 @@ class Plat {
     categoryIds,
     title,
     description,
-    affordability,
+    preparation,
     complexity,
-    imageUrl,
     duration,
+    imageUrl,
     ingredients,
     steps,
     isGlutenFree,
@@ -19,12 +19,15 @@ class Plat {
     this.categoryIds = categoryIds;
     this.title = title;
     this.description = description;
-    this.affordability = affordability;
+
+    this.preparation = preparation;
     this.complexity = complexity;
-    this.imageUrl = imageUrl;
     this.duration = duration;
+
+    this.imageUrl = imageUrl;
     this.ingredients = ingredients;
     this.steps = steps;
+
     this.isGlutenFree = isGlutenFree;
     this.isVegan = isVegan;
     this.isVegetarian = isVegetarian;
