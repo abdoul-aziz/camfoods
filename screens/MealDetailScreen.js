@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import { View, Text, ScrollView, Image, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector, useDispatch } from "react-redux";
+
 import HeaderButton from "../components/headerButton";
-import { PLATS } from "../data/dummy-data";
 import DefaultText from "../components/DefaultText";
+import { toggleFavorite } from "../store/actions/plats";
 
 const ListItem = (props) => {
   return (
@@ -14,8 +16,30 @@ const ListItem = (props) => {
 };
 
 const MealDetailScreen = (props) => {
+  const availablePlats = useSelector((state) => state.plats.plats);
+
   const platId = props.navigation.getParam("platId");
-  const selectedPlat = PLATS.find((plat) => plat.id == platId);
+
+  const currentFavoritePlats = useSelector((state) =>
+    state.plats.favoritePlats.some((plat) => plat.id === platId)
+  );
+
+  const selectedPlat = availablePlats.find((plat) => plat.id == platId);
+
+  const dispatch = useDispatch();
+
+  const toggleFavoriteHaandler = useCallback(() => {
+    dispatch(toggleFavorite(platId));
+  }, [dispatch, platId]);
+
+  useEffect(() => {
+    props.navigation.setParams({ toggleFav: toggleFavoriteHaandler });
+  }, [toggleFavoriteHaandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({ isFav: currentFavoritePlats });
+  }, [currentFavoritePlats]);
+
   return (
     <ScrollView>
       <Image source={{ uri: selectedPlat.imageUrl }} style={styles.image} />
@@ -41,15 +65,19 @@ const MealDetailScreen = (props) => {
 };
 
 MealDetailScreen.navigationOptions = (navigationData) => {
-  const platId = navigationData.navigation.getParam("platId");
-  const selectedPlat = PLATS.find((plat) => plat.id == platId);
+  const platTitle = navigationData.navigation.getParam("platTitle");
+  const toggleFavorite = navigationData.navigation.getParam("toggleFav");
+  const isFavorite = navigationData.navigation.getParam("isFav");
 
   return {
-    headerTitle: selectedPlat.title,
+    headerTitle: platTitle,
     headerRight: () => {
       return (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item iconName="ios-star" />
+          <Item
+            iconName={isFavorite ? "ios-star" : "ios-star-outline"}
+            onPress={toggleFavorite}
+          />
         </HeaderButtons>
       );
     },

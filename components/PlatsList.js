@@ -1,8 +1,16 @@
 import React from "react";
 import { View, FlatList, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 import PlatsItem from "../components/PlatsItem";
+
 const PlatsList = (props) => {
+  const favoritePlats = useSelector((state) => state.plats.filtredPlats);
+
   const renderPlatItem = (itemData) => {
+    const isFavorite = favoritePlats.some(
+      (plat) => plat.id === itemData.item.id
+    );
+
     return (
       <PlatsItem
         title={itemData.item.title}
@@ -13,7 +21,11 @@ const PlatsList = (props) => {
         onSelectPlat={() => {
           props.navigation.navigate({
             routeName: "MealDetail",
-            params: { platId: itemData.item.id },
+            params: {
+              platId: itemData.item.id,
+              platTitle: itemData.item.title,
+              isFav: isFavorite,
+            },
           });
         }}
       />
